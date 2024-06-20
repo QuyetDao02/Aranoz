@@ -1,0 +1,45 @@
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a *ngIf="databyid.TinhTrang == 0" routerLink="/admin/importedinvoice/detail/create/{{id}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Mã hóa đơn nhập</th>
+                            <th colspan="2">Kho</th>
+                            <th>Màu sắc</th>
+                            <th>Kích cỡ (cm)</th>
+                            <th >Số lượng</th>
+                            <th >Giá</th>
+                            <th *ngIf="databyid.TinhTrang == 0"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let data of databill">
+                            <td style="width: 15%;"> {{data.idHDN}} </td>
+                            <td><img style="width: 100px;" src="http://localhost:3000/{{data.HinhAnh}}" alt=""> </td>
+                            <td style="width: 25%;"> {{data.TenDNT}} </td>
+                            <td> {{data.MauSac}} </td>
+                            <td> {{data.dai}} x {{data.rong}} x {{data.cao}}</td>
+                            <td> {{data.SoLuong}}</td>
+                            <td> {{data.Gia | number:'1.0-0'}}</td>
+                            <td class="text-center" *ngIf="databyid.TinhTrang == 0">
+                                <!-- <a [routerLink]="['/billofsale/detail',data.id]" class="btn btn-success" style="margin-right: 10px;"><i class="fa fa-info"></i></a> -->
+                                <!-- <a [routerLink]="['/product/update', data.id]"  class="btn btn-info" style="margin-right: 10px;"><i class="fa fa-pen-square"></i></a> -->
+                                <a href="#" (click)="sukien($event,data.id)" class="btn btn-danger" ><i class="fa fa-trash"></i></a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+

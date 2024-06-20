@@ -1,0 +1,67 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a routerLink="/admin/category/create" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <select class="form-control" [(ngModel)]="items" style="width: 75px;">
+                        <option style="border: 1px solid black;" value="5">5</option>
+                        <option style="border: 1px solid black;" value="10">10</option>
+                        <option style="border: 1px solid black;" value="20">20</option>
+                        <option style="border: 1px solid black;" value="50">50</option>
+                        <option style="border: 1px solid black;" value="100">100</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="text" style="float: right; width: 300px;" class="form-control"
+                        placeholder="Search for..." [(ngModel)]="searchTerm" (keyup)="search()"
+                        aria-describedby="basic-addon2">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã loại đồ nội thất</th>
+                            <th>Tên loại đồ nội thất</th>
+                            <th>Mô tả</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr
+                            *ngFor="let data of filteredItems | paginate: {itemsPerPage: items, currentPage: p}; let i = index">
+                            <td> {{i+1}}</td>
+                            <td> {{data.id}} </td>
+                            <td> {{data.TenLDNT}} </td>
+                            <td> {{data.MoTa}} </td>
+                            <td class="text-center">
+                                <a href="" [routerLink]="['/admin/category/update', data.id]" class="btn btn-info"
+                                    style="margin-right: 10px;"><i class="fa fa-pen-square"></i></a>
+                                <a href="" (click)="sukien(data.id, $event)" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li>
+                        <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""
+                            screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [maxSize]="7"
+                            screenReaderCurrentLabel="You're on page"></pagination-controls>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

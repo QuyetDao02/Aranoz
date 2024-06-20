@@ -1,0 +1,182 @@
+<!--::header part start::-->
+<header class="main_menu home_menu">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" [href]="['/user/index']"> <img src="/../assets/homeui/img/logo.png"
+                            alt="logo"> </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" [href]="['/user/index']">Trang chủ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown_1" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cửa hàng
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                    <a *ngFor="let lsp1 of lsp" class="dropdown-item"
+                                        [href]="['/user/category/'+lsp1.id]">{{lsp1.TenLDNT}}</a>
+                                </div>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        pages
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="login.html"> login</a>
+                                        <a class="dropdown-item" href="tracking.html">tracking</a>
+                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
+                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
+                                        <a class="dropdown-item" href="elements.html">elements</a>
+                                    </div>
+                                </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" [href]="['/user/blog']">Tin tức</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="hearer_icon d-flex">
+                        <a id="search_1" title="Tìm kiếm" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <a><i class="ti-heart"></i></a>
+                        <div class="dropdown cart">
+                            <a class="dropdown-toggle" title="Giỏ hàng" [routerLink]="['/user/cart']" id="navbarDropdown3">
+                                <i class="fas fa-cart-plus">
+                                    <span *ngIf="ngOnInit()" class="quantity">{{count}}</span>
+                                </i>
+                            </a>
+                            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="single_product">
+    
+                                    </div>
+                                </div> -->
+
+                        </div>
+
+                        <a *ngIf="ngOnInit()" (click)="logout()" style="cursor: pointer;" title="Đăng xuất"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+
+                        <a *ngIf="!ngOnInit()" [href]="['/user/login']"><i class="fa fa-user-plus" title="Đăng nhập"></i></a>
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="search_input" id="search_input_box">
+        <div class="container ">
+            <div class="d-flex justify-content-between search-inner">
+                <input type="text" [(ngModel)]="searchTerm" (keyup)="searchdata()" class="form-control" id="search_input" placeholder="Search Here">
+                <button type="submit" (click)="search()" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <!-- <span class="ti-search" title="Search"></span> -->
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header part end-->
+
+<router-outlet></router-outlet>
+
+<!--::footer_part start::-->
+<footer class="footer_part">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-sm-6 col-lg-3">
+                <div class="single_footer_part">
+                    <h4>Sản phẩm hàng đầu</h4>
+                    <ul class="list-unstyled">
+                        <li><a>Trang web được quản lý</a></li>
+                        <li><a>Quản lý danh tiếng</a></li>
+                        <li><a>Dịch vụ tiếp thị</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="single_footer_part">
+                    <h4>Đường dẫn nhanh</h4>
+                    <ul class="list-unstyled">
+                        <li><a>Việc làm</a></li>
+                        <li><a>Tài sản thương hiệu</a></li>
+                        <li><a>Quan hệ đầu tư</a></li>
+                        <li><a>Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="single_footer_part">
+                    <h4>Đặc trưng</h4>
+                    <ul class="list-unstyled">
+                        <li><a>Việc làm</a></li>
+                        <li><a>Tài sản thương hiệu</a></li>
+                        <li><a>Quan hệ đầu tư</a></li>
+                        <li><a>Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="single_footer_part">
+                    <h4>Tài nguyên</h4>
+                    <ul class="list-unstyled">
+                        <li><a>Hướng dẫn</a></li>
+                        <li><a>Nghiên cứu</a></li>
+                        <li><a>Các chuyên gia</a></li>
+                        <li><a>Đại lý</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4>Newsletter</h4>
+                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                        </p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="subscribe_form relative mail_part">
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = ' Email Address '">
+                                <button type="submit" name="submit" id="newsletter-submit"
+                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+        </div>
+
+    </div>
+    <div class="copyright_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer_icon social_icon">
+                        <ul class="list-unstyled">
+                            <li><a class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                            <li><a class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                            <li><a class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

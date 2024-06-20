@@ -1,0 +1,55 @@
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit,  } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { nhacungcap } from '../../Model/nhacungcap.model';
+
+@Component({
+    selector: 'app-supplier',
+    templateUrl: './updatesupplier.component.html',
+    styleUrls: [
+        '../../../assets/adminui/css/sb-admin-2.min.css',
+        '../../../assets/adminui/vendor/datatables/dataTables.bootstrap4.min.css',
+        '../../../assets/adminui/vendor/fontawesome-free/css/all.min.css'
+    ]
+})
+
+export class UpdateSupplierComponent implements OnInit{
+    id: string = '';
+    constructor(
+        private http: HttpClient,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
+    svs: nhacungcap = { MaNCC: 0, TenNCC: "", DiaChi: "", Sdt: ""};
+    ldnt:any;
+    ngOnInit(): void {
+        // Sử dụng ActivatedRoute để nhận tham số từ URL
+        this.route.params.subscribe(params => {
+          this.id = params['id'];
+          this.dulieu();
+          // Bạn có thể sử dụng this.categoryId trong các phương thức khác của component
+        });
+    }
+    dulieu() {
+        this.http.get('http://localhost:3000/api/supplier/getbyid/'+this.id).subscribe(
+            (data:any)=>{
+                this.svs.MaNCC = data.MaNCC;
+                this.svs.TenNCC = data.TenNCC;
+                this.svs.DiaChi = data.DiaChi;
+                this.svs.Sdt = data.Sdt;
+            }
+        )
+    }
+    sukien() {
+        this.http.post('http://localhost:3000/api/product/update', this.svs).subscribe(
+            data => {
+                alert("Sửa thành công");
+                this.router.navigate(['/admin/product']);
+            },
+            error => {
+                console.error('Lỗi:', error);
+            }
+        );
+    }
+
+}

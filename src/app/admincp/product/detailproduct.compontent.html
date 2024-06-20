@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <h3>Chi tiết sản phẩm</h3>
+        <table class="table">
+          <thead>
+            <th>Sản phẩm</th>
+            <th>Tên loại</th>
+            <th>Tên hãng</th>
+            <th>Màu sắc</th>
+            <th>Kích cỡ</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="d-flex">
+                <img [ngStyle]="{'width': '100px'}" src="http://localhost:3000/{{svs.HinhAnh}}" alt="">
+                <p>{{svs.TenDNT}}</p>
+              </td>
+              <td>
+                {{ldnt.TenLDNT}}
+              </td>
+              <td>
+                {{hang.tenhang}}
+              </td>
+              <td>
+                <div class="d-flex">
+                  <div [ngStyle]="{'margin': '5px'}" *ngFor="let item of detailcolor">
+                    <ng-container *ngIf="item.GhiChu == 'Không có'; else detailcolor">
+                      <p>Không có màu sắc</p>
+                    </ng-container>
+                    <ng-template #detailcolor>
+                      <div
+                        [ngStyle]="{ 'width': '20px', 'height': '20px', 'background': item.code, 'border-radius': '50%', 'box-shadow': '0 0 3px dodgerblue'}">
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let item of size">
+                  <ng-container *ngIf="item.GhiChu == 'Không có'; else size">
+                    <p>Không có kích cỡ</p>
+                  </ng-container>
+                  <ng-template #size>
+                    <div *ngIf="item.dai != '' && item.rong != '' &&item.cao != ''">
+                      {{item.dai + 'x' + item.rong + 'x' + item.cao}}
+                    </div>
+                    <div *ngIf="item.dai == '' && item.rong != '' &&item.cao != ''">
+                      {{item.rong + 'x' + item.cao}}
+                    </div>
+                    <div *ngIf="item.dai != '' && item.rong == '' &&item.cao != ''">
+                      {{item.dai + 'x' + item.cao}}
+                    </div>
+                    <div *ngIf="item.dai != '' && item.rong != '' &&item.cao == ''">
+                      {{item.dai + 'x' + item.rong}}
+                    </div>
+                    <div *ngIf="item.dai == '' && item.rong == '' &&item.cao != ''">
+                      {{item.cao}}
+                    </div>
+                    <div *ngIf="item.dai != '' && item.rong == '' &&item.cao == ''">
+                      {{item.dai}}
+                    </div>
+                    <div *ngIf="item.dai == '' && item.rong != '' &&item.cao == ''">
+                      {{item.rong}}
+                    </div>
+                  </ng-template>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr>
+    <div class="col-md-12">
+      <div class="form-group">
+        <h3>Kho</h3>
+        <table class="table">
+          <thead>
+            <th>Màu sắc</th>
+            <th>Kích cỡ(dai x rong x cao)</th>
+            <th>Số lượng</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of depot">
+              <td class="d-flex">
+                <div>{{item.MauSac}}</div>
+                <div [ngStyle]="{ 'width': '20px', 'height': '20px', 'background': item.code, 'border-radius': '50%', 'box-shadow': '0 0 3px dodgerblue'}">
+                </div>
+              </td>
+              <td>{{item.dai}} x {{item.rong}} x {{item.cao}}</td>
+              <td>{{item.SoLuong}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <a routerLink="/admin/product/detail/create/{{this.id}}" class="btn btn-info" style="float: right;">Thêm chi tiết sản phẩm</a>
+    </div>
+  </div>
+
+</div>

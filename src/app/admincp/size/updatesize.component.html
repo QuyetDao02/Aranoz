@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập chiều dài:<input class="form-control" type="text" [(ngModel)]="svs.dai"></p>
+    <p class="form-group">Nhập chiều rộng:<input class="form-control" type="text" [(ngModel)]="svs.rong"></p>
+    <p class="form-group">Nhập chiều cao:<input class="form-control" type="text" [(ngModel)]="svs.cao"></p>
+    <p class="form-group">Nhập ghi chú:<input class="form-control" type="text" [(ngModel)]="svs.GhiChu"></p>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Sửa</button>
+        <a routerLink="/admin/size" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

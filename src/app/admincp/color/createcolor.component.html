@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập màu sắc:<input class="form-control" type="text" [(ngModel)]="svs.MauSac"></p>
+    <p class="form-group">Chọn màu:<input class="" type="color" [(ngModel)]="svs.code"></p>
+    <p class="form-group">Nhập ghi chú:<input class="form-control" type="text" [(ngModel)]="svs.GhiChu"></p>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+        <a routerLink="/admin/color" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+    
+    pagination-controls {
+        padding: 10px;
+  }
+
+   pagination-controls ::ng-deep .ngx-pagination .current {
+    color: white;
+    border-radius: 50%;
+  }
+  pagination-controls ::ng-deep .ngx-pagination .disabled {
+    opacity: 0.5; /* Độ mờ */
+    /* Thêm các thuộc tính CSS khác tùy theo nhu cầu */
+  }
+  pagination-controls ::ng-deep .ngx-pagination a {
+    text-decoration: none; /* Loại bỏ gạch chân */
+    /* Thêm các thuộc tính CSS khác tùy theo nhu cầu */
+  }
+  pagination-controls ::ng-deep .ngx-pagination a:hover {
+    color: white;
+    border-radius: 50%;
+    background: #2199e8;
+  }
+  pagination-controls ::ng-deep .ngx-pagination a:hover {
+    transition: 0.7s;
+  }
+  
+  

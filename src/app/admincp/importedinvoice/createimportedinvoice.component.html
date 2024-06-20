@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập nhân viên:
+        <select [(ngModel)]="svs.MaNV" class="form-control custom-select">
+            <option *ngFor="let sta of staff" [value]="sta.MaNV">{{sta.TenNV}}</option>
+        </select>
+    </p>
+    <p class="form-group">Nhập nhà cung cấp
+        <select [(ngModel)]="svs.MaNCC" class="form-control custom-select">
+            <option *ngFor="let sup of supplier" [value]="sup.MaNCC">{{sup.TenNCC}}</option>
+        </select>
+    </p>
+    <!-- <p class="form-group">Ngày nhập: <input class="form-control" type="date" [(ngModel)]="svs.NgayNhap"></p>
+    <p class="form-group">Tổng tiền<input class="form-control" type="text" [(ngModel)]="svs.TongTien"></p> -->
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+        <a routerLink="/admin/importedinvoice/{{svs.TinhTrang}}" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a routerLink="/admin/color/create" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                style="float: right;">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-body">
+            <select class="form-control" [(ngModel)]="items" style="margin: 10px 0px; padding:0; width: 50px;">
+                <option style="border: 1px solid black;" value="5">5</option>
+                <option style="border: 1px solid black;" value="10">10</option>
+                <option style="border: 1px solid black;" value="20">20</option>
+                <option style="border: 1px solid black;" value="50">50</option>
+                <option style="border: 1px solid black;" value="100">100</option>
+            </select>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Mã màu</th>
+                            <th>Màu sắc</th>
+                            <th>Ghi chú</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let data of svs | paginate: {itemsPerPage: items, currentPage: p}">
+                            <td> {{data.IDMauSac}} </td>
+                            <td>
+                                <p>{{data.MauSac}}</p>
+                                <div *ngIf="data.code != '' && data.MauSac != ''"
+                                    [ngStyle]="{ 'width': '20px', 'height': '20px', 'background': data.code, 
+                                    'border': '1px solid black', 'border-radius': '50%'}">
+                                </div>
+                            </td>
+                            <td> {{data.GhiChu}} </td>
+
+                            <td class="text-center">
+                                <a href="" [routerLink]="['/admin/color/update', data.IDMauSac]" class="btn btn-info"
+                                    style="margin-right: 10px;"><i class="fa fa-pen-square"></i></a>
+                                <a href="" (click)="sukien(data.IDMauSac, $event)" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li>
+                        <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""
+                            screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [maxSize]="7"
+                            screenReaderCurrentLabel="You're on page"></pagination-controls>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

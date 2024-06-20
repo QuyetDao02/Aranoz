@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập kho:
+        <select [(ngModel)]="svs.IDKho" class="form-control custom-select">
+            <option *ngFor="let dp of depot" [value]="dp.MaKho">{{dp.TenDNT}}- dài:{{dp.dai}}- rộng:{{dp.rong}}- cao:{{dp.cao}}- màu:{{dp.MauSac}}</option>
+        </select>
+    </p>
+    <p class="form-group">Nhập số lượng<input class="form-control" type="text" [(ngModel)]="svs.SoLuong"></p>
+    <!-- <p class="form-group">Nhập số lượng<input class="form-control" type="text" [(ngModel)]="svs.Gia"></p> -->
+
+    
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+        <a href="/admin/importedinvoice/detail/{{svs.idHDN}}" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

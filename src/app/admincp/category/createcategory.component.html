@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập tên loại đồ nội thất:<input class="form-control" type="text" [(ngModel)]="svs.TenLDNT"></p>
+    <p class="form-group">Nhập mô tả:<input class="form-control" type="text" [(ngModel)]="svs.MoTa"></p>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+        <a routerLink="/admin/category" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

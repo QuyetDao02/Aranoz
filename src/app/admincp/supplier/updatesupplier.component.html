@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập tên nhà cung cấp:<input class="form-control" type="text" [(ngModel)]="svs.TenNCC"></p>
+    
+    <p class="form-group">Địa chỉ:<input class="form-control" type="text" [(ngModel)]="svs.DiaChi"></p>
+
+    <p class="form-group">Số điện thoại:<input class="form-control" type="number" [(ngModel)]="svs.Sdt"></p>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Sửa</button>
+        <a routerLink="/product" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

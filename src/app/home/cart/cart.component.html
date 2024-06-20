@@ -1,0 +1,135 @@
+<section class="cart_area padding_top">
+    <div class="container">
+        <h3>Giỏ hàng</h3>
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Màu sắc</th>
+                            <th scope="col">Kích thước</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Tổng tiền</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cart of carts; let i = index">
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img src="{{'http://localhost:3000/'+ cart.ProductPath}}" style="width: 100px;" alt="{{cart.ProductName}}" />
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{cart.ProductName}}</p>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div *ngFor="let item of depot">
+                                    <p *ngIf="cart.DepotID == item.MaKho">{{item.MauSac}}</p>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div *ngFor="let item of depot">
+                                    <p *ngIf="cart.DepotID == item.MaKho">{{item.dai}} x {{item.rong}} x {{item.cao}}</p>
+                                </div>
+                            </td>
+
+                            <td>
+                                <h5>{{cart.ProductPrice | number:'1.0-0'}} ₫</h5>
+                            </td>
+                            <td>
+                                <div class="product_count">
+                                    <span style="cursor: pointer;" class="input-number-decrement" (click)="decrementQuantity(i)"> <i class="ti-angle-down"></i></span>
+                                    <input type="number" [(ngModel)]="quantity[i]" min="1" readonly>
+                                    <span style="cursor: pointer;" class="input-number-increment" (click)="incrementQuantity(i)"> <i class="ti-angle-up"></i></span>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{quantity[i]*cart.ProductPrice | number:'1.0-0'}} ₫</h5>
+                            </td>
+                            <td>
+                                <a style="cursor: pointer;" class="btn btn-danger" (click)="removecartbyid(cart.DepotID, $event)"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="len==0">
+                            <td colspan="7">
+                                Chưa có sản phẩm nào trong giỏ hàng
+                            </td>
+                        </tr>
+
+                        <tr class="bottom_button" *ngIf="len!=0">
+                            <td colspan="4">
+                                Tổng tiền giỏ hàng:
+                            </td>
+                            <td></td>
+                            <td><b>{{subtotal | number:'1.0-0'}} ₫</b></td>
+                            <td></td>
+                        </tr>
+                        <!-- <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Subtotal</h5>
+                            </td>
+                            <td>
+                                <h5>$2160.00</h5>
+                            </td>
+                        </tr>
+                        <tr class="shipping_area">
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <h5>Shipping</h5>
+                            </td>
+                            <td>
+                                <div class="shipping_box">
+                                    <ul class="list">
+                                        <li>
+                                            <a href="#">Flat Rate: $5.00</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Free Shipping</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Flat Rate: $10.00</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="#">Local Delivery: $2.00</a>
+                                        </li>
+                                    </ul>
+                                    <h6>
+                                        Calculate Shipping
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                    </h6>
+                                    <select class="shipping_select">
+                                        <option value="1">Bangladesh</option>
+                                        <option value="2">India</option>
+                                        <option value="4">Pakistan</option>
+                                    </select>
+                                    <select class="shipping_select section_bg">
+                                        <option value="1">Select a State</option>
+                                        <option value="2">Select a State</option>
+                                        <option value="4">Select a State</option>
+                                    </select>
+                                    <input type="text" placeholder="Postcode/Zipcode" />
+                                    <a class="btn_1" href="#">Update Details</a>
+                                </div>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+                <div class="checkout_btn_inner float-right">
+                    <a class="btn_1" href="/user/index" >Mua tiếp</a>
+                    <a class="btn_3 checkout_btn_1" *ngIf="carts.length != 0" href="/user/checkout">Thanh toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

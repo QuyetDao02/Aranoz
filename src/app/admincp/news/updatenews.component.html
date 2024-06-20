@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập tiêu đề<input class="form-control" type="text" [(ngModel)]="svs.TieuDe"></p>
+    <p class="form-group">Nhập nhân viên đăng:
+
+        <select [(ngModel)]="svs.MaNV" class="form-control custom-select">
+            <option *ngFor="let nv of staff" [value]="nv.MaNV">{{nv.TenNV}}</option>
+        </select>
+    </p>
+    <p class="form-group">
+        Ảnh:<input class="form-control-file" type="file" (change)="upfile($event)">
+        <br>
+        <img style="width: 200px;" src="http://localhost:3000/{{svs.Anh}}" alt="">
+    </p>
+        <p class="form-group">Nhập nội dung:
+        <angular-editor [(ngModel)]="svs.NoiDung" [config]="editorConfig"></angular-editor>
+
+    </p>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Sửa</button>
+        <a routerLink="/admin/news" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="form-group">
+    <h5>Chọn màu sắc</h5>
+    <div style="display: inline; padding-right: 10px;" *ngFor="let item of color">
+      <ng-container *ngIf="item.MauSac == '' || item.code == ''; else checkcolor">
+        
+      </ng-container>
+      <ng-template #checkcolor>
+        <ng-container *ngIf="item.GhiChu == 'Không có' else color">
+          
+        </ng-container>
+        <ng-template #color>
+          
+        </ng-template>
+        <input type="checkbox" class="btn-check checked" [value]="item.IDMauSac" name="color" id="{{item.IDMauSac}}"
+        autocomplete="off" (change)="colorcheck($event, item.IDMauSac)">
+      <label class="iradio" for="{{item.IDMauSac}}">
+        <div [ngStyle]="{ 'width': '20px', 'height': '20px', 'background': item.code, 'border-radius': '50%', 'border': '0.1px solid gray' }">
+        </div>
+      </label>
+      </ng-template>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group d-flex flex-row bd-highlight">
+    <div>
+      <h5>Số lượng kích cỡ:</h5>
+    </div>
+    <input type="number" [(ngModel)]="sizeconst" min="0" disabled style="width: 40px; margin: 0 0 0 10px;">
+    <span>
+      <i class="fa-solid fa-angle-up d-block" style="cursor: pointer;" (click)="up()"></i>
+      <i class="fa-solid fa-angle-down d-block" style="cursor: pointer;" (click)="down()"></i>
+    </span>
+  </div>
+  <div class="row">
+    <div *ngFor="let item of sizenumber" class="d-inline col-md-6">
+      <h5>Kích cỡ {{item + 1}}</h5>
+      <hr>
+      <p class="form-group">Nhập chiều dài:<input class="form-control" type="text" [(ngModel)]="sizelist[item].dai"></p>
+      <p class="form-group">Nhập chiều rộng:<input class="form-control" type="text" [(ngModel)]="sizelist[item].rong">
+      </p>
+      <p class="form-group">Nhập chiều cao:<input class="form-control" type="text" [(ngModel)]="sizelist[item].cao"></p>
+      <p class="form-group">Nhập ghi chú:<input class="form-control" type="text" [(ngModel)]="sizelist[item].GhiChu">
+      </p>
+      <hr>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+    <!-- <a routerLink="/admin/size" class="btn btn-info" style="float: right;">Quay lại</a> -->
+  </div>
+
+</div>

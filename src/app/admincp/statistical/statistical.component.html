@@ -1,0 +1,124 @@
+<div class="container-fluid">
+    <h3>Thống kê</h3>
+    <br>
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập ngày<input class="form-control" type="date" [(ngModel)]="indate"></p>
+
+    <div style="display: flex; justify-content: space-between;">
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="day()">Thống kê theo ngày</button>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="statisticalInMonth()">Thống kê theo tháng</button>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="statisticalInYear()">Thống kê theo năm</button>
+        </div>
+    </div>
+
+    <p class="form-group">Nhập ngày bắt đầu<input class="form-control" type="date" [(ngModel)]="beforce"></p>
+    <p class="form-group">Nhập ngày kết thúc<input class="form-control" type="date" [(ngModel)]="after"></p>
+
+    <div style="display: flex; justify-content: space-between;">
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" (click)="statisticalIndate()">Thống kê</button>
+        </div>
+    </div>
+    <div>
+        <p *ngIf="pice != 0 && bill?.length > 0" class="form-group">Tổng doanh thu: {{pice | number:'1.0-0'}} ₫</p>
+ 
+    </div>
+    <div *ngIf="pice!=0 && bill?.length > 0" class="card shadow mb-4">
+        <div class="card-body">
+            <h4>{{tieude}}</h4>
+            <!-- <select class="form-control" [(ngModel)]="items" style="margin: 10px 0px; padding:0; width: 50px;">
+                <option style="border: 1px solid black;" value="5">5</option>
+                <option style="border: 1px solid black;" value="10">10</option>
+                <option style="border: 1px solid black;" value="20">20</option>
+                <option style="border: 1px solid black;" value="50">50</option>
+                <option style="border: 1px solid black;" value="100">100</option>
+            </select> -->
+            
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Mã đơn hàng</th>
+                            <th style="width: 15%;">Khách hàng</th>
+                            <th style="width: 15%;">Ngày lập</th>
+                            <th style="width: 15%;">Địa chỉ</th>
+                            <th style="width: 15%;">Người nhận </th>
+                            <th style="width: 10%;">Số điện thoại nhận</th>
+                            <th style="width: 12%;">Tổng tiền</th>
+                            <th style="width: 8%;"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let data of bill | paginate: {itemsPerPage: items, currentPage: p}">
+                            <td style="width: 10%;"> {{data.id}} </td>
+                            <td style="width: 15%;"> {{data.TenKH}} </td>
+                            <td style="width: 15%;"> {{data.NgayLap | date:'yyyy-MM-dd'}}</td>
+                            <td style="width: 15%;"> {{data.DiaChi}}</td>
+                            <td style="width: 15%;"> {{data.NguoiNhan}} </td>
+                            <td style="width: 10%;"> {{data.SdtNguoiNhan}} </td>
+                            <td style="width: 12%;"> {{data.TongTien | number:'1.0-0'}} ₫</td>
+                            <td style="width: 8%;" class="text-center">
+                                <a (click)="detailbill(data.id)" class="btn btn-success"
+                                    style="margin-right: 10px;"><i class="fa fa-info"></i></a>
+                                <!-- <a *ngIf="data.TinhTrang == 1 || data.TinhTrang == 2 || data.TinhTrang == 0 " (click)="sukien(data.id, data.TinhTrang, $event)"  class="btn btn-info" style="margin-right: 10px;"><i class="fa-solid fa-right-long"></i></a>
+                                <a *ngIf="data.TinhTrang == 1 || data.TinhTrang == 2 || data.TinhTrang == 0" (click)="huy(data.id, $event)" class="btn btn-danger" ><i class="fa-solid fa-x"></i></a>  -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination">
+                <ul>
+                    <li>
+                        <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""
+                        screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [maxSize]="7"
+                        screenReaderCurrentLabel="You're on page"></pagination-controls>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div *ngIf="databill?.length > 0 && bill?.length > 0 " class="card shadow mb-4">
+        <div class="card-body">
+        <h4>Chi tiết đơn hàng</h4>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th >Mã đơn hàng bán</th>
+                            <th colspan="2">Sản phẩm</th>
+                            <th >Màu sắc</th>
+                            <th >Kích thước</th>
+                            <th >Số lượng</th>
+                            <th >Giá</th>
+                            <!-- <th style="width: 20%;"></th> -->
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let data of databill">
+                            <td> {{data.idDHB}} </td>
+                            <td> <img style="width: 100px;" src="http://localhost:3000/{{data.HinhAnh}}" alt=""> </td>
+                            <td> {{data.TenDNT}} </td>
+                            <td> {{data.MauSac}} </td>
+                            <td> {{data.dai}} x {{data.rong}} x {{data.cao}} </td>
+                            <td> {{data.SoLuong}}</td>
+                            <td> {{data.Gia | number:'1.0-0'}} ₫</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

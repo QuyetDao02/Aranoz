@@ -1,0 +1,74 @@
+
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a routerLink="/admin/product/create" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <select class="form-control" [(ngModel)]="items" style="width: 75px;">
+                        <option style="border: 1px solid black;" value="5">5</option>
+                        <option style="border: 1px solid black;" value="10">10</option>
+                        <option style="border: 1px solid black;" value="20">20</option>
+                        <option style="border: 1px solid black;" value="50">50</option>
+                        <option style="border: 1px solid black;" value="100">100</option>
+                    </select>
+                </div>
+                <!-- <div class="col">
+                    <input type="text" style="float: right; width: 300px;" class="form-control"
+                        placeholder="Search for..." [(ngModel)]="searchTerm" (keyup)="search()"
+                        aria-describedby="basic-addon2">
+                </div> -->
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th style="width: 3%;">STT</th>
+                            <th style="width: 8%;">Mã kho</th>
+                            <th colspan="2" style="width: 32%;">Tên đồ nội thất</th>
+                            <th style="width: 10%;">Màu sắc</th>
+                            <th style="width: 8%;">Dài</th>
+                            <th style="width: 8%;">Rộng</th>
+                            <th style="width: 8%;">Cao</th>
+                            <th style="width: 5%;">Số lượng</th>
+
+                            <th style="width: 18%;"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr
+                            *ngFor="let data of depot | paginate: {itemsPerPage: items, currentPage: p }; let i = index">
+                            <td style="width: 3%;"> {{i+1}} </td>
+                            <td style="width: 8%;"> {{data.MaKho}}</td>
+                            <td style="width: 15%;"> <img src="{{'http://localhost:3000/'+data.HinhAnh}}" alt="" style="width: 200px;">
+                            </td>
+                            <td style="width: 17%;"> {{data.TenDNT}} </td>
+                            <td style="width: 10%;"> {{data.MauSac}}</td>
+                            <td style="width: 8%;"> {{data.dai}} cm</td>
+                            <td style="width: 8%;"> {{data.rong}} cm</td>
+                            <td style="width: 8%;"> {{data.cao}} cm</td>
+                            <td style="width: 5%;"> {{data.SoLuong}} </td>
+                            <td style="width: 18%;" class="text-center">
+                                <a class="btn btn-success" style="margin-right: 10px;"><i class="fa fa-info"></i></a>
+                                <a class="btn btn-info" style="margin-right: 10px;"><i class="fa fa-pen-square"></i></a>
+                                <a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="pagination">
+                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""
+                screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" [maxSize]="7"
+                screenReaderCurrentLabel="You're on page"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+</div>

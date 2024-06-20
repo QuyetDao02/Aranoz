@@ -1,0 +1,271 @@
+<!--================Checkout Area =================-->
+<section class="checkout_area padding_top">
+  <div class="container">
+    <!-- <div class="returning_customer">
+        <div class="check_title">
+          <h2>
+            Returning Customer?
+            <a href="#">Click here to login</a>
+          </h2>
+        </div>
+        <p>
+          If you have shopped with us before, please enter your details in the
+          boxes below. If you are a new customer, please proceed to the
+          Billing & Shipping section.
+        </p>
+        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+          <div class="col-md-6 form-group p_star">
+            <input type="text" class="form-control" id="name" name="name" value=" " />
+            <span class="placeholder" data-placeholder="Username or Email"></span>
+          </div>
+          <div class="col-md-6 form-group p_star">
+            <input type="password" class="form-control" id="password" name="password" value="" />
+            <span class="placeholder" data-placeholder="Password"></span>
+          </div>
+          <div class="col-md-12 form-group">
+            <button type="submit" value="submit" class="btn_3">
+              log in
+            </button>
+            <div class="creat_account">
+              <input type="checkbox" id="f-option" name="selector" />
+              <label for="f-option">Remember me</label>
+            </div>
+            <a class="lost_pass" href="#">Lost your password?</a>
+          </div>
+        </form>
+      </div> -->
+    <!-- <div class="cupon_area">
+        <div class="check_title">
+          <h2>
+            Have a coupon?
+            <a href="#">Click here to enter your code</a>
+          </h2>
+        </div>
+        <input type="text" placeholder="Enter coupon code" />
+        <a class="tp_btn" href="#">Apply Coupon</a>
+      </div> -->
+    <div class="billing_details">
+      <div class="row">
+        <div class="col-lg-4">
+          <h3>Chi tiết đơn hàng</h3>
+          <div class="row contact_form">
+            <!-- <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="first" name="name" />
+                <span class="placeholder" data-placeholder="First name"></span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="last" name="name" />
+                <span class="placeholder" data-placeholder="Last name"></span>
+              </div> -->
+            <div class="col-md-12 form-group">
+              <p>Người nhận: <span *ngIf="order.NguoiNhan.length==0" style="color: red;">*</span></p>
+              <input type="text" class="form-control" placeholder="Người nhận" [(ngModel)]="order.NguoiNhan" />
+            </div>
+            <div class="col-md-12 form-group">
+              <p>Số điện thoại: <span *ngIf="order.SdtNguoiNhan.length == 0" style="color: red;">*</span>
+                <span *ngIf="isTouched && !isValid" style="color: red;">*</span>
+              </p>
+              <input type="text" id="numberInput" pattern="[0-9]*" maxlength="10" class="form-control"
+                placeholder="Số điện thoại người nhận" (input)="validateNumber()" [(ngModel)]="order.SdtNguoiNhan" />
+              <p *ngIf="order.SdtNguoiNhan?.['length'] > 0 && order.SdtNguoiNhan?.['length'] < 10 && isTouched && isValid"
+                style="color: red;">
+                Vui lòng nhập 10 kí tự!</p>
+            </div>
+            <!-- <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="number" name="number" />
+                <span class="placeholder" data-placeholder="Phone number"></span>
+              </div> -->
+            <!-- <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" id="email" name="compemailany" />
+                <span class="placeholder" data-placeholder="Email Address"></span>
+              </div> -->
+            <!-- <div class="col-md-12 form-group p_star">
+                <select class="country_select">
+                  <option value="1">Country</option>
+                  <option value="2">Country</option>
+                  <option value="4">Country</option>
+                </select>
+              </div> -->
+            <div class="col-md-12 form-group p_star">
+              <p>Địa chỉ nhận: <span *ngIf="order.DiaChi.length == 0" style="color: red;">*</span></p>
+              <input type="text" [(ngModel)]="order.DiaChi" class="form-control" placeholder="Địa chỉ nhận">
+            </div>
+            <!-- <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="add2" name="add2" />
+                <span class="placeholder" data-placeholder="Address line 02"></span>
+              </div> -->
+            <!-- <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" id="city" name="city" />
+                <span class="placeholder" data-placeholder="Town/City"></span>
+              </div> -->
+
+
+
+            <!-- <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" />
+              </div> -->
+            <!-- <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  <input type="checkbox" id="f-option2" name="selector" />
+                  <label for="f-option2">Create an account?</label>
+                </div>
+              </div> -->
+            <div class="col-md-12 form-group">
+              <!-- <div class="creat_account">
+                  <h3>Shipping Details</h3>
+                  <input type="checkbox" id="f-option3" name="selector" />
+                  <label for="f-option3">Ship to a different address?</label>
+                </div> -->
+              <p>Ghi chú</p>
+              <textarea class="form-control" [(ngModel)]="order.GhiChu" rows="1" placeholder="Ghi chú"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="order_box">
+            <h2>Đơn hàng của bạn</h2>
+            <ul class="list">
+              <li>
+
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Sản phẩm</th>
+                      <th scope="col">Số lượng</th>
+                      <th scope="col">Màu sắc</th>
+                      <th scope="col">Giá</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cart of carts; let i = index">
+                      <td>
+                        <div class="media">
+                          <div class="d-flex">
+                            <img src="{{'http://localhost:3000/'+ cart.ProductPath}}" style="width: 100px;"
+                              alt="{{cart.ProductName}}" />
+                          </div>
+                          <div class="media-body">
+                            <p>{{cart.ProductName}}</p>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>x {{cart.Quantity}}</td>
+
+                      <td>
+                        <div *ngFor="let item of depot">
+                          <p *ngIf="cart.DepotID == item.MaKho">{{item.MauSac}}</p>
+                        </div>
+                      </td>
+
+                      <td>
+                        <h5>{{cart.ProductPrice | number:'1.0-0'}} ₫</h5>
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+              </li>
+            </ul>
+            <ul class="list">
+              <li>
+                <h5 style="border-bottom: 1px solid #eeeeee;">Đơn vị vận chuyển</h5>
+                
+              </li>
+            </ul>
+            <!-- <div class="payment_item">
+              <div class="radion_btn">
+                <input type="radio" value="Giao hàng tiết kiệm" id="f-option5" name="shipping" />
+                <label for="f-option5">Giao hàng tiết kiệm</label>
+                <div class="check"></div>
+              </div>
+            </div>
+            <div class="payment_item active">
+              <div class="radion_btn">
+                <input type="radio" value="Giao hàng nhanh" id="f-option6" name="shipping" />
+                <label for="f-option6">Giao hàng nhanh</label>
+                <div class="check"></div>
+              </div>
+            </div>
+            <div class="payment_item active">
+              <div class="radion_btn">
+                <input type="radio" value="Viettel Post" id="f-option7" name="shipping" />
+                <label for="f-option7">Viettel Post</label>
+                <div class="check"></div>
+              </div>
+            </div> -->
+            <ul class="list list_2">
+              <li>
+                <a>Đơn hàng
+                  <span>{{subtotal | number:'1.0-0'}} ₫</span>
+                </a>
+              </li>
+              <!-- <li>
+                <a>Shipping
+                  <span>Flat rate: $50.00</span>
+                </a>
+              </li>
+              <li>
+                <a>Tổng tiền
+                  <span>$2210.00</span>
+                </a>
+              </li> -->
+            </ul>
+            <div class="payment_item">
+               
+                  <input (click)="methodpayment('Thanh toán khi nhận hàng')" type="radio" name="selector" checked/>
+                  <label> Thanh toán khi nhận hàng</label>
+                 
+              
+              </div>
+              <div class="payment_item active">
+                  <input (click)="methodpayment('Thanh toán ví vnpay')" type="radio" name="selector" />
+                  <label > Thanh toán ví vnpay </label>
+                  <img class="img-paypal" src="../../../assets/homeui/img/product/single-product/card.jpg" alt="" />               
+              </div>
+              <!-- <div class="payment_item active">
+                <div class="radion_btn">
+                  <input type="radio" value="Giao hàng nhanh" id="f-option10" name="pay" />
+                  <label for="f-option10">Giao hàng nhanh</label>
+                  <div class="check"></div>
+                </div>
+              </div>
+              <div class="payment_item active">
+                <div class="radion_btn">
+                  <input type="radio" value="Viettel Post" id="f-option11" name="pay" />
+                  <label for="f-option11">Viettel Post</label>
+                  <div class="check"></div>
+                </div>
+              </div> -->
+              <!-- <div class="creat_account">
+                <input type="checkbox" id="f-option4" name="selector" />
+                <label for="f-option4">I’ve read and accept the </label>
+                <a href="#">terms & conditions*</a>
+              </div> -->
+            <a class="btn_3" type="submit" (click)="addorder()">Đặt hàng</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="custom-select1">
+    <select id="city">
+      <option value="" selected>Chọn tỉnh thành</option>
+    </select>
+  </div>
+  <div class="custom-select1">
+    <select id="district">
+      <option value="" selected>Chọn quận huyện</option>
+    </select>
+  </div>
+  <div class="custom-select1">
+    <select id="ward">
+      <option value="" selected>Chọn phường xã</option>
+    </select>
+  </div> -->
+</section>
+<!--================End Checkout Area =================-->

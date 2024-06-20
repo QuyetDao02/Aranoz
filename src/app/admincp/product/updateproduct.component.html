@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập tên đồ nội thất:<input class="form-control" type="text" [(ngModel)]="svs.TenDNT"></p>
+
+    <p class="form-group">Nhập tên loại đồ nội thất:
+        <!-- <input class="form-control" type="text" [(ngModel)]="svs.MaLDNT"> -->
+        <select [(ngModel)]="svs.MaLDNT" class="form-control">
+            <option class="form-control" *ngFor="let lsp of ldnt" [value]="lsp.id">{{lsp.TenLDNT + " - " + lsp.MoTa}}
+            </option>
+        </select>
+    </p>
+
+    <p class="form-group">Nhập tên hãng:
+
+        <select [(ngModel)]="svs.idhang" class="form-control">
+            <option class="form-control" *ngFor="let h of hang" [value]="h.idhang">{{h.tenhang}}</option>
+        </select>
+    </p>
+
+    <p class="form-group">Ảnh:<input class="form-control" type="text" [(ngModel)]="svs.HinhAnh"></p>
+    <div class="form-group">
+        <input class="form-control-file" type="file" (change)="upfile($event)">
+
+        <img style="width: 200px;" src="http://localhost:3000/{{svs.HinhAnh}}" alt="">
+    </div>
+
+    <!-- <p class="form-group">Nhập giá trung bình:<input class="form-control" type="text" [(ngModel)]="svs.GiaTB"></p> -->
+
+    <p class="form-group">Nhập mô tả:
+        <angular-editor [(ngModel)]="svs.MoTa" [config]="editorConfig"></angular-editor>
+    </p>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Sửa</button>
+        <a routerLink="/admin/product" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>

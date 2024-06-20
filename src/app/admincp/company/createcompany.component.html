@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <!-- <p>Nhập ID:<input type="text" [(ngModel)]="svs.id"></p> -->
+    <p class="form-group">Nhập tên hãng:<input class="form-control" type="text" [(ngModel)]="svs.tenhang"></p>
+
+
+    <p class="form-group">Nhập địa chỉ:<input class="form-control" type="text" [(ngModel)]="svs.diachi"></p>
+
+    <p class="form-group">Nhập số điện thoại:<input class="form-control" type="text" [(ngModel)]="svs.sdt"></p>
+    
+    <p class="form-group">Nhập ghi chú:<input class="form-control" type="text" [(ngModel)]="svs.ghichu">
+
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" (click)="sukien()">Thêm mới</button>
+        <a routerLink="/admin/company" class="btn btn-info" style="float: right;">Quay lại</a>
+    </div>
+</div>
